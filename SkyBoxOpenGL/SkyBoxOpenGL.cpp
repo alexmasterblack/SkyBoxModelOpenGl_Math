@@ -168,39 +168,39 @@ int main() {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		//
 
-        modelShader.Use();
-        Mat4 view(camera.GetViewMatrix());
-        Mat4 projection(camera.GetProjectionMatrix());
-        modelShader.SetMat4("projection", projection);
-        modelShader.SetMat4("view", view);
+        	modelShader.Use();
+        	Mat4 view(camera.GetViewMatrix());
+        	Mat4 projection(camera.GetProjectionMatrix());
+        	modelShader.SetMat4("projection", projection);
+        	modelShader.SetMat4("view", view);
 
-        //рендеринг моделей
-        Mat4 model(1.0f);
-        model = model.Translate(positionModel[0]);
-        modelShader.SetMat4("model", model);
-        modelSign.Draw(modelShader);
+        	//рендеринг моделей
+        	Mat4 model(1.0f);
+        	model = model.Translate(positionModel[0]);
+        	modelShader.SetMat4("model", model);
+        	modelSign.Draw(modelShader);
 
 
-        Mat4 model1(1.0f);
-        model1 = model1.Translate(positionModel[1]);
-        model1 = model1.Scale(Vec3(2.0f));
-        modelShader.SetMat4("model", model1);
-        modelBomb.Draw(modelShader);
-        //
+        	Mat4 model1(1.0f);
+        	model1 = model1.Translate(positionModel[1]);
+        	model1 = model1.Scale(Vec3(2.0f));
+        	modelShader.SetMat4("model", model1);
+        	modelBomb.Draw(modelShader);
+        	//
 
-        //скайбокс
-        glDepthFunc(GL_LEQUAL);
-        skyboxShader.Use();
-        view = camera.GetViewSkyBox();
-        skyboxShader.SetMat4("view", view);
-        skyboxShader.SetMat4("projection", projection);
+        	//скайбокс
+        	glDepthFunc(GL_LEQUAL);
+        	skyboxShader.Use();
+        	view = camera.GetViewSkyBox();
+        	skyboxShader.SetMat4("view", view);
+        	skyboxShader.SetMat4("projection", projection);
 
-        VAO.Binding();
-        textureSkyBox.Binding(0);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-        VAO.Binding(0);
-        glDepthFunc(GL_LESS);
-        //
+        	VAO.Binding();
+        	textureSkyBox.Binding(0);
+        	glDrawArrays(GL_TRIANGLES, 0, 36);
+        	VAO.Binding(0);
+        	glDepthFunc(GL_LESS);
+        	//
 
 		window.display();
 	}
